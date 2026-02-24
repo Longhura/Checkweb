@@ -15,7 +15,11 @@ interface AnalyticsData {
   checking: boolean;
 }
 
-export function URLChecker() {
+interface URLCheckerProps {
+  onUrlChange?: (url: string) => void;
+}
+
+export function URLChecker({ onUrlChange }: URLCheckerProps) {
   const { settings } = useSettings();
   const [urlInput, setUrlInput] = useState('');
   const [analytics, setAnalytics] = useState<AnalyticsData>({
@@ -65,6 +69,11 @@ export function URLChecker() {
         checked: true,
         checking: false,
       });
+      
+      // Notify parent component of URL change
+      if (onUrlChange) {
+        onUrlChange(url);
+      }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Failed to reach website';
       setAnalytics((prev) => ({

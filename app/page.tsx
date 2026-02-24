@@ -55,7 +55,7 @@ export default function Home() {
                   <div className="w-2 h-2 bg-primary rounded-full" />
                   Website Checker
                 </h2>
-                <URLChecker />
+                <URLChecker onUrlChange={setUrlToView} />
               </div>
             </div>
 
@@ -66,7 +66,7 @@ export default function Home() {
                   <div className="w-2 h-2 bg-primary rounded-full" />
                   Live Preview
                 </h2>
-                <WebsiteViewer url={urlToView} />
+                <WebsiteViewer url={urlToView} onUrlChange={setUrlToView} />
               </div>
             </div>
           </div>
